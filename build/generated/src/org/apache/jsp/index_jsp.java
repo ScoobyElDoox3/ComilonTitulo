@@ -42,7 +42,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "header.jsp", out, false);
-      out.write('\r');
       out.write('\n');
 
     try
@@ -56,42 +55,42 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
        if(session.getAttribute("Perfil").toString().equals("Admin"))
        {
      
-      out.write("   \r\n");
+      out.write("   \n");
       out.write("         ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "menuAdmin.html", out, false);
-      out.write("\r\n");
+      out.write("\n");
       out.write("         <h1>");
  out.println("Bienvenido!,  "+user); 
-      out.write("</h1>\r\n");
+      out.write("</h1>\n");
       out.write("         <h1>");
  out.println("Perfil,  "+perfil); 
-      out.write("</h1>\r\n");
-      out.write("            \r\n");
-      out.write("                <form action=\"SessionServlet\" name=\"logout\">\r\n");
-      out.write("                <input type=\"submit\" value=\"Salir\"/>\r\n");
-      out.write("                <input type=\"hidden\" name=\"action\" value=\"logout\"/>\r\n");
-      out.write("                </form>\r\n");
+      out.write("</h1>\n");
+      out.write("            \n");
+      out.write("                <form action=\"SessionServlet\" name=\"logout\">\n");
+      out.write("                <input type=\"submit\" value=\"Salir\"/>\n");
+      out.write("                <input type=\"hidden\" name=\"action\" value=\"logout\"/>\n");
+      out.write("                </form>\n");
       out.write("     ");
      
        }
        if(session.getAttribute("Perfil").equals("Cliente Tradicional"))
        {
            
-      out.write("\r\n");
+      out.write("\n");
       out.write("           ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "menuAdmin.html", out, false);
-      out.write("\r\n");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "menuTradicional.html", out, false);
+      out.write("\n");
       out.write("         <h1>");
  out.println("Bienvenido!,  "+user); 
-      out.write("</h1>\r\n");
+      out.write("</h1>\n");
       out.write("         <h1>");
  out.println("Perfil,  "+perfil); 
-      out.write("</h1>\r\n");
-      out.write("            \r\n");
-      out.write("                <form action=\"SessionServlet\" name=\"logout\">\r\n");
-      out.write("                <input type=\"submit\" value=\"Salir\"/>\r\n");
-      out.write("                <input type=\"hidden\" name=\"action\" value=\"logout\"/>\r\n");
-      out.write("                </form>\r\n");
+      out.write("</h1>\n");
+      out.write("            \n");
+      out.write("                <form action=\"SessionServlet\" name=\"logout\">\n");
+      out.write("                <input type=\"submit\" value=\"Salir\"/>\n");
+      out.write("                <input type=\"hidden\" name=\"action\" value=\"logout\"/>\n");
+      out.write("                </form>\n");
       out.write("       ");
     
        }
@@ -110,62 +109,62 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     }
     
     
-      out.write("\r\n");
-      out.write("    \r\n");
-      out.write("   \r\n");
-      out.write("    \r\n");
-      out.write("    \r\n");
-      out.write("    <div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">\r\n");
-      out.write("  <!-- Indicators -->\r\n");
-      out.write("  <ol class=\"carousel-indicators\">\r\n");
-      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\r\n");
-      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>\r\n");
-      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\r\n");
-      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>\r\n");
-      out.write("  </ol>\r\n");
-      out.write("\r\n");
-      out.write("  <!-- Wrapper for slides -->\r\n");
-      out.write("  <div class=\"carousel-inner\" role=\"listbox\">\r\n");
-      out.write("    <div class=\"item active\">\r\n");
-      out.write("      <img src=\"libs/img/car_1.jpg\" alt=\"Mosaico Loica\">\r\n");
-      out.write("\t  <div class=\"carousel-caption\">\r\n");
-      out.write("        <h3>La Mejor Calidad Gastronomica!!!</h3>\r\n");
-      out.write("        <p>Ven a conocer nuestro platos o pidelos a traves de nuestro servicio delivery</p>\r\n");
-      out.write("      </div>\r\n");
-      out.write("    </div>\r\n");
-      out.write("\r\n");
-      out.write("    <div class=\"item\">\r\n");
-      out.write("      <img src=\"libs/img/car_2.jpg\" alt=\"esto escribe aca\">\r\n");
-      out.write("    </div>\r\n");
-      out.write("\r\n");
-      out.write("    <div class=\"item\">\r\n");
-      out.write("      <img src=\"libs/img/car_1.jpg\" alt=\"Mosaico Lagarto\">\r\n");
-      out.write("    </div>\r\n");
-      out.write("\r\n");
-      out.write("    <div class=\"item\">\r\n");
-      out.write("      <img src=\"libs/img/car_2.jpg\" alt=\"Mosaico Mariposa\">\r\n");
-      out.write("    </div>\r\n");
-      out.write("  </div>\r\n");
-      out.write("\r\n");
-      out.write("  <!-- Left and right controls -->\r\n");
-      out.write("  <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\r\n");
-      out.write("    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\r\n");
-      out.write("    <span class=\"sr-only\">Previous</span>\r\n");
-      out.write("  </a>\r\n");
-      out.write("  <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\r\n");
-      out.write("    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\r\n");
-      out.write("    <span class=\"sr-only\">Next</span>\r\n");
-      out.write("  </a>\r\n");
-      out.write("</div>\r\n");
-      out.write("        \r\n");
-      out.write("    \r\n");
-      out.write("        \r\n");
-      out.write("        \r\n");
-      out.write("        \r\n");
-      out.write("    </body>\r\n");
+      out.write("\n");
+      out.write("    \n");
+      out.write("   \n");
+      out.write("    \n");
+      out.write("    \n");
+      out.write("    <div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">\n");
+      out.write("  <!-- Indicators -->\n");
+      out.write("  <ol class=\"carousel-indicators\">\n");
+      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>\n");
+      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>\n");
+      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>\n");
+      out.write("    <li data-target=\"#myCarousel\" data-slide-to=\"3\"></li>\n");
+      out.write("  </ol>\n");
+      out.write("\n");
+      out.write("  <!-- Wrapper for slides -->\n");
+      out.write("  <div class=\"carousel-inner\" role=\"listbox\">\n");
+      out.write("    <div class=\"item active\">\n");
+      out.write("      <img src=\"libs/img/car_1.jpg\" alt=\"Mosaico Loica\">\n");
+      out.write("\t  <div class=\"carousel-caption\">\n");
+      out.write("        <h3>La Mejor Calidad Gastronomica!!!</h3>\n");
+      out.write("        <p>Ven a conocer nuestro platos o pidelos a traves de nuestro servicio delivery</p>\n");
+      out.write("      </div>\n");
+      out.write("    </div>\n");
+      out.write("\n");
+      out.write("    <div class=\"item\">\n");
+      out.write("      <img src=\"libs/img/car_2.jpg\" alt=\"esto escribe aca\">\n");
+      out.write("    </div>\n");
+      out.write("\n");
+      out.write("    <div class=\"item\">\n");
+      out.write("      <img src=\"libs/img/car_1.jpg\" alt=\"Mosaico Lagarto\">\n");
+      out.write("    </div>\n");
+      out.write("\n");
+      out.write("    <div class=\"item\">\n");
+      out.write("      <img src=\"libs/img/car_2.jpg\" alt=\"Mosaico Mariposa\">\n");
+      out.write("    </div>\n");
+      out.write("  </div>\n");
+      out.write("\n");
+      out.write("  <!-- Left and right controls -->\n");
+      out.write("  <a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">\n");
+      out.write("    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\n");
+      out.write("    <span class=\"sr-only\">Previous</span>\n");
+      out.write("  </a>\n");
+      out.write("  <a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">\n");
+      out.write("    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\n");
+      out.write("    <span class=\"sr-only\">Next</span>\n");
+      out.write("  </a>\n");
+      out.write("</div>\n");
+      out.write("        \n");
+      out.write("    \n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("    </body>\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "footer.jsp", out, false);
-      out.write("\r\n");
+      out.write("\n");
       out.write("    ");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

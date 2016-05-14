@@ -17,12 +17,18 @@ import java.sql.Statement;
  */
 public class Conexion {
     Connection conn = null;
+//    String driver = "oracle.jdbc.driver.OracleDriver";
+//    //Localhost
+//    String url = "jdbc:oracle:thin:@localhost:1521:XE";    
+//    String user = "COMILON_PRUEBA";
+//    String password = "12311231gb";
+    
+   
     String driver = "oracle.jdbc.driver.OracleDriver";
     //Localhost
-    String url = "jdbc:oracle:thin:@localhost:1521:XE";    
-    String user = "COMILON_PRUEBA";
-    String password = "12311231gb";
-    
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";    
+    String user = "elcomilon";
+    String password = "elcomilon1";
     public Statement Conectar(){    
 try
     {
