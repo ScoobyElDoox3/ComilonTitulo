@@ -55,6 +55,27 @@ try
     }
 }
    
+   
+   public Connection Con(){
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+           Class.forName("oracle.jdbc.OracleDriver");
+
+           conn = DriverManager.getConnection(url,user,password);
+
+        }catch(SQLException se){
+           //Handle errors for JDBC
+           se.printStackTrace();
+           conn=null;
+        }catch(Exception e){
+           //Handle errors for Class.forName
+           e.printStackTrace();
+           conn=null;
+        }finally{
+           return conn;
+        }//end try
+    }
    public void Desconectar(){
    try{
        conn.close();
