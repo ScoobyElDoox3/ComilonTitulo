@@ -1,5 +1,6 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
-    Document   : gestionPedido
+    Document   : consultarEstadoPedido
     Created on : 14-05-2016, 20:23:01
     Author     : john
 --%>
@@ -56,21 +57,31 @@
     }
     
     %>
-        <h1>Gestión Pedido</h1>
+        <h1>Con</h1>
         
+        <h3>Buscar</h3>
+        <form>
+            <label>Ingrese código de pedido</label>
+            <input type="text" />
+            <input type="submit"/>
+        </form>
+        
+        <h3>Listar</h3>
         <table>
-            <tr>
-                <td>ID Venta</td>
-                <td>Detalle Venta</td>
-                <td>Precio Venta</td>
-            </tr>
+            
         </table>
         
-        <label>Consultar Promedio venta día</label>    <button></button>    <input type="text" />
-        <label>Consultar Promedio ventas mes</label>    <button></button>   <input type="text" />
-        <label>Consultar Número ventas efectuadas día</label>   <button></button>   <input type="text" />
-        <label>Consultar Número ventas efectuadas mes</label>   <button></button>   <input type="text" />
+        <h3>Datos de pedido</h3>
+        <form>
+            <label>Tipo Pedido</label><input type=""/>
+            <label>ID Cliente</label><input type=""/>
+            <label>Repartidor</label>
+            <select name="cmbRepartidor">
+            </select>
+            <input type="submit"/>
+        </form>
         
+       
         
         <%
             PedidoController pedidoCon = new PedidoController();
