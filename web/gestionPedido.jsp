@@ -60,18 +60,30 @@
     }
     
     %>
+    <%
+        PedidoController pedidoCon = new PedidoController();
+        Pedido pedido;
+    %>
         <h1>Gestión Pedido</h1>
         
         
-        <label>Tipo Pedido</label>    <select></select>
+        <label>Tipo Pedido</label>    
+        <select>
+        <%
+            ArrayList<String> listTipo = pedidoCon.seleccionarTipoPedido();
+             for(int i = 0; i < listTipo.size(); i++){
+                out.println("<option value='NONE'>- Seleccionar -</option>");
+                out.println("<option value='"+ listTipo.get(i) +"'>"+ listTipo.get(i) +"</option>");
+            }
+        %>
+        </select>
         
         <%
-            PedidoController pedidoCon = new PedidoController();
-            Pedido pedido;
+            
             //Pedido pedido = new Pedido();
             //pedido = pedidoCon.obtenerPedidos();
             ArrayList<Detalle_Pedido> listDetPedido = pedidoCon.obtenerPedidos();
-            pedidoCon.seleccionarTipoPedido();
+            
             %>
             
             <table class="table-bordered table-striped table">
