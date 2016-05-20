@@ -104,6 +104,8 @@
                 }
             %>
         </table>
-        
+        <script>
+            //$("body").append("<% out.print(listDetPedido.get(1).getTotalVenta()); %>");
+        </script>
 </body>
 <jsp:include page="footer.jsp"/>
