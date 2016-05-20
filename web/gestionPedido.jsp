@@ -58,13 +58,7 @@
     %>
         <h1>Gestión Pedido</h1>
         
-        <table>
-            <tr>
-                <td>ID Venta</td>
-                <td>Detalle Venta</td>
-                <td>Precio Venta</td>
-            </tr>
-        </table>
+        
         
         <label>Consultar Promedio venta día</label>    <button></button>    <input type="text" />
         <label>Consultar Promedio ventas mes</label>    <button></button>   <input type="text" />
@@ -76,13 +70,23 @@
             PedidoController pedidoCon = new PedidoController();
             //Pedido pedido = new Pedido();
             //pedido = pedidoCon.obtenerPedidos();
-            
+            Pedido pedido = pedidoCon.obtenerPedidos();
             %>
-            <h1><% 
-                Pedido pedido = pedidoCon.obtenerPedidos();
+            
+            <table>
+            <tr>
+                <td>ID Pedido</td>
+                <td>Detalle</td>
+                <td></td>
+                <td></td>
+                <td></td>
                 
-
-            %></h1>
+                
+            </tr>
+            <tr>
+                <td><% //out.println(pedido.getId()); %></td>
+            </tr>
+        </table>
         
 </body>
 <jsp:include page="footer.jsp"/>

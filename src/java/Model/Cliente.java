@@ -12,26 +12,21 @@ package Model;
 public class Cliente {
     private int idCliente;
     private String tipoCliente;
-    private int rut;
+    private Persona persona;
     private Empresa empresa;
 
     public Cliente(){
-        this.idCliente = 0;
-        this.tipoCliente = "";
-        this.rut = 0;
-        this.empresa = new Empresa();
+        
     
     }
     
-    public Cliente(int idCliente, String tipoCliente, int rut, Empresa empresa) {
+    public Cliente(int idCliente, String tipoCliente, Persona persona, Empresa empresa) {
         this.idCliente = idCliente;
         this.tipoCliente = tipoCliente;
-        this.rut = rut;
+        this.persona = persona;
         this.empresa = empresa;
     }
 
-    
-    
     public int getIdCliente() {
         return idCliente;
     }
@@ -48,12 +43,12 @@ public class Cliente {
         this.tipoCliente = tipoCliente;
     }
 
-    public int getRut() {
-        return rut;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setRut(int rut) {
-        this.rut = rut;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     public Empresa getEmpresa() {
@@ -63,7 +58,7 @@ public class Cliente {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-    
+
     
     
 }
