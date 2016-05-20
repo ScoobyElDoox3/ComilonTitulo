@@ -81,10 +81,10 @@
             <tr>
                 <td>ID Pedido</td>
                 <td>Detalle</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Cliente</td>
+                <td>Tipo Despacho</td>
+                <td>Id Convenio</td>
+                <td>Total</td>
                 
             </tr>
             <%
@@ -94,8 +94,8 @@
                     pedido = detallePedido.getPedido();
                     out.println("<tr>");
                     
-                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
-                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
+                    out.println("<td>"+ pedido.getId() +"</td>");
+                    out.println("<td><a href='gestionpedido.jsp?IDPedido="+pedido.getId()+">Ver detalle</a></td>");
                     out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
                     out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
                     out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
