@@ -6,6 +6,8 @@
 package Controller;
 import java.sql.*;
 import Model.*;
+import java.util.ArrayList;
+import java.util.List;
 import oracle.jdbc.OracleTypes;
 /**
  *
@@ -17,11 +19,11 @@ public class PedidoController {
     public Cliente cliente;
     public TipoPedido tipoPedido;
     public Pedido pedido;
-    public Plato plato;
-    public Pedido[] pedidoArray;      
+    public Detalle_Pedido detallePedido;
+    public Detalle_Pedido[] pedidoArray;      
+    public ArrayList<Detalle_Pedido> listDetPedido = new ArrayList<Detalle_Pedido>();
     
-    
-   public Pedido obtenerPedidos(){
+   public ArrayList<Detalle_Pedido> obtenerPedidos(){
         Conexion con = new Conexion();
         Connection rescon = con.Con(); 
         try {
@@ -41,7 +43,8 @@ public class PedidoController {
                 cliente = new Cliente(rset.getInt(3), rset.getString(5), persona, null);
                 tipoPedido = new TipoPedido(rset.getInt(13), rset.getString(14));
                 pedido = new Pedido(rset.getInt(1), rset.getDate(2), cliente, tipoPedido);
-                //plato = new Plato(0, nombre, descripcion, 0, tipo_plato, proveedor, categoria)
+                detallePedido = new Detalle_Pedido(pedido, null, rset.getInt(15));
+                listDetPedido.add(detallePedido);
             }
                 
 //            cStmt.registerOutParameter(2, java.sql.Types.DATE);
@@ -73,7 +76,7 @@ public class PedidoController {
             System.out.println(ex.getMessage());
             con=null;
         }finally{
-            return pedido;
+            return listDetPedido;
         }
         
         

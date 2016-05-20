@@ -4,10 +4,13 @@
     Author     : john
 --%>
 
+<%@page import="Model.Pedido"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Detalle_Pedido"%>
+<%@page import="java.util.List"%>
 <jsp:include page="header.jsp"/>
 <%@page import="java.sql.Connection"%>
 <%@page import="Controller.PedidoController"%>
-<%@page import="Model.Pedido"%>
 <%
     try
     {   
@@ -68,9 +71,10 @@
         
         <%
             PedidoController pedidoCon = new PedidoController();
+            Pedido pedido;
             //Pedido pedido = new Pedido();
             //pedido = pedidoCon.obtenerPedidos();
-            Pedido pedido = pedidoCon.obtenerPedidos();
+            ArrayList<Detalle_Pedido> listDetPedido = pedidoCon.obtenerPedidos();
             %>
             
             <table>
@@ -80,12 +84,26 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                
+                <td></td>
                 
             </tr>
-            <tr>
-                <td><% //out.println(pedido.getId()); %></td>
-            </tr>
+            <%
+                String html = "";
+                for(int i = 0; i < listDetPedido.size(); i++){
+                    Detalle_Pedido detallePedido  = listDetPedido.get(i);
+                    pedido = detallePedido.getPedido();
+                    out.println("<tr>");
+                    
+                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
+                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
+                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
+                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
+                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
+                    out.println("<td>" + listDetPedido.get(i).getTotalVenta() + "</td>");
+                    
+                    out.println("</tr>");
+                }
+            %>
         </table>
         
 </body>
