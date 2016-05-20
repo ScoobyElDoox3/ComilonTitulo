@@ -63,11 +63,8 @@
         
         
         
-        <label>Consultar Promedio venta día</label>    <button></button>    <input type="text" />
-        <label>Consultar Promedio ventas mes</label>    <button></button>   <input type="text" />
-        <label>Consultar Número ventas efectuadas día</label>   <button></button>   <input type="text" />
-        <label>Consultar Número ventas efectuadas mes</label>   <button></button>   <input type="text" />
-        
+        <label>Tipo Pedido</label>    <select></select>
+        <input type="submit" value="ASa" name="AS" />
         
         <%
             PedidoController pedidoCon = new PedidoController();
@@ -85,7 +82,8 @@
                 <td>Tipo Despacho</td>
                 <td>Id Convenio</td>
                 <td>Total</td>
-                
+                <td>Editar</td>
+                <td>Eliminar</td>
             </tr>
             <%
                 String html = "";
@@ -95,12 +93,13 @@
                     out.println("<tr>");
                     
                     out.println("<td>"+ pedido.getId() +"</td>");
-                    out.println("<td><a href='gestionpedido.jsp?IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
-                    out.println("<td>"+ pedido.getCliente().getPersona().getNombre()+"</td>");
+                    out.println("<td><a href='gestionPedido.jsp?IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
+                    out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
                     out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
                     out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
                     out.println("<td>" + listDetPedido.get(i).getTotalVenta() + "</td>");
-                    
+                    out.println("<td><a href='gestionPedido.jsp?Action=Editar&IDPedido="+pedido.getId()+"'>Editar</a></td>");
+                    out.println("<td><a href='gestionPedido.jsp?Acttion=Eliminar&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
                     out.println("</tr>");
                 }
             %>
