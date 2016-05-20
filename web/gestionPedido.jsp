@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : gestionPedido
     Created on : 14-05-2016, 20:23:01
@@ -62,9 +63,7 @@
         <h1>Gestión Pedido</h1>
         
         
-        
         <label>Tipo Pedido</label>    <select></select>
-        <input type="submit" value="ASa" name="AS" />
         
         <%
             PedidoController pedidoCon = new PedidoController();
@@ -72,6 +71,7 @@
             //Pedido pedido = new Pedido();
             //pedido = pedidoCon.obtenerPedidos();
             ArrayList<Detalle_Pedido> listDetPedido = pedidoCon.obtenerPedidos();
+            pedidoCon.seleccionarTipoPedido();
             %>
             
             <table class="table-bordered table-striped table">
@@ -105,7 +105,7 @@
             %>
         </table>
         <script>
-            //$("body").append("<% out.print(listDetPedido.get(1).getTotalVenta()); %>");
+            //$("body").append("<% //out.print(listDetPedido.get(1).getTotalVenta()); %>");
         </script>
 </body>
 <jsp:include page="footer.jsp"/>

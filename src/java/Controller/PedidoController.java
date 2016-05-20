@@ -51,4 +51,24 @@ public class PedidoController {
         
         
    }
+   
+   public void seleccionarTipoPedido(){
+        //int asd
+       String resultado = "no hay resultado";
+       Conexion conn = new Conexion();
+       String sql = "SELECT NOMBRE FROM TIPO_PEDIDO";
+       Statement command = conn.Conectar();
+       try{
+           ResultSet rset = command.executeQuery(sql);
+           //ResultSet rset = command.getResultSet();
+           while (rset.next ()){
+               String asd = rset.getString(2);
+           }
+           
+       }
+       catch(Exception ex){
+           resultado = ex.getMessage();
+       }
+       //return "";
+   }
 }
