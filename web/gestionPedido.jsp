@@ -69,10 +69,10 @@
         
         <label>Tipo Pedido</label>    
         <select>
+            <option value='NONE'>- Seleccionar -</option>
         <%
             ArrayList<String> listTipo = pedidoCon.seleccionarTipoPedido();
              for(int i = 0; i < listTipo.size(); i++){
-                out.println("<option value='NONE'>- Seleccionar -</option>");
                 out.println("<option value='"+ listTipo.get(i) +"'>"+ listTipo.get(i) +"</option>");
             }
         %>
