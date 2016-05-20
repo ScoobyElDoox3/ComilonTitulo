@@ -52,23 +52,24 @@ public class PedidoController {
         
    }
    
-   public void seleccionarTipoPedido(){
+   public ArrayList<String> seleccionarTipoPedido(){
         //int asd
        String resultado = "no hay resultado";
+       ArrayList<String> listTipo = new ArrayList<String>();
        Conexion conn = new Conexion();
-       String sql = "SELECT NOMBRE FROM TIPO_PEDIDO";
+       String sql = "SELECT nombre from TIPO_PEDIDO";
        Statement command = conn.Conectar();
        try{
            ResultSet rset = command.executeQuery(sql);
            //ResultSet rset = command.getResultSet();
            while (rset.next ()){
-               String asd = rset.getString(2);
+               listTipo.add(rset.getString(1));
            }
            
        }
        catch(Exception ex){
            resultado = ex.getMessage();
        }
-       //return "";
+       return listTipo;
    }
 }
