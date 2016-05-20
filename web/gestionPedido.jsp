@@ -95,9 +95,9 @@
                     out.println("<tr>");
                     
                     out.println("<td>"+ pedido.getId() +"</td>");
-                    out.println("<td><a href='gestionpedido.jsp?IDPedido="+pedido.getId()+">Ver detalle</a></td>");
-                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
-                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
+                    out.println("<td><a href='gestionpedido.jsp?IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
+                    out.println("<td>"+ pedido.getCliente().getPersona().getNombre()+"</td>");
+                    out.println("<td>"+ pedido.getTipoPedido() +"</td>");
                     out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
                     out.println("<td>" + listDetPedido.get(i).getTotalVenta() + "</td>");
                     
