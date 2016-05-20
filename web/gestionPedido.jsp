@@ -77,7 +77,7 @@
             ArrayList<Detalle_Pedido> listDetPedido = pedidoCon.obtenerPedidos();
             %>
             
-            <table>
+            <table class="table-bordered table-striped table">
             <tr>
                 <td>ID Pedido</td>
                 <td>Detalle</td>
@@ -97,7 +97,7 @@
                     out.println("<td>"+ pedido.getId() +"</td>");
                     out.println("<td><a href='gestionpedido.jsp?IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
                     out.println("<td>"+ pedido.getCliente().getPersona().getNombre()+"</td>");
-                    out.println("<td>"+ pedido.getTipoPedido() +"</td>");
+                    out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
                     out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
                     out.println("<td>" + listDetPedido.get(i).getTotalVenta() + "</td>");
                     
