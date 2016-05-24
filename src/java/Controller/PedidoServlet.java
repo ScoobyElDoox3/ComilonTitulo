@@ -5,8 +5,10 @@
  */
 package Controller;
 
+import Model.Detalle_Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.WebInitParam;
@@ -34,10 +36,28 @@ public class PedidoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String action = request.getParameter("IDPedido");
-        if(action != null)
+        String action = request.getParameter("accion");
+        PedidoController pedcon = new PedidoController();
+        
+        if(action.equals("getEstadoPedido"))
         {   
-            //String user = request.getParameter("txtUser");
+            int idPedido = Integer.parseInt(request.getParameter("idPedido"));
+            Detalle_Pedido detped =  pedcon.getEstadoPedidoByIdPedido(idPedido);
+            request.setAttribute("estadoPedido", "asd");
+            request.getRequestDispatcher("consultarEstadoPedido.jsp").forward(request, response);
+        }
+        
+        if(action.equals("EliminarPedido")){
+            int idPedido = Integer.parseInt(request.getParameter("IDPedido"));
+            pedcon.eliminarPedidoById(idPedido);
+            request.setAttribute("msg", "Pedido con id " + idPedido + " eliminado");
+            request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
+        }
+        if(action.equals("VerDetalle")){
+            int idPedido = Integer.parseInt(request.getParameter("IDPedido"));
+            ArrayList<Detalle_Pedido> detPed = pedcon.getDetallePedido(idPedido);
+            request.setAttribute("detPedido", detPed);
+            request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
         }
     }
 

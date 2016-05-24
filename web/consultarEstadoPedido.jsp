@@ -58,47 +58,41 @@
     }
     
     %>
-        <h1>Con</h1>
+    <div class="">
+        <h1>Consultar Estado Pedido</h1><hr></hr>
         
         <h3>Buscar</h3>
-        <form action="" method="POST">
+        <form action="PedidoServlet" method="POST">
             <label>Ingrese código de pedido</label>
             <input name="idPedido" type="text" />
-            <input action="getPedido" type="submit"/>
+            <input type="hidden" name="accion" value="getEstadoPedido" />
+            <input name="enviar" type="submit"/>
         </form>
-        
-        <h3>Listar</h3>
-        <table>
-            
-        </table>
-        
-        <h3>Datos de pedido</h3>
-        <form>
-            <label>Nombre Pedido</label>
-            <label>Tipo Pedido</label><input type=""/>
-            <label>Estado Peido</label>
-            <label>ID Cliente</label><input type=""/>
-            <label>Repartidor</label>
-            <label>Ubicación Pedido</label>
-            <label>Mostrar Ubicación</label>
-            <select name="cmbRepartidor">
-            </select>
-            <input type="submit"/>
-        </form>
-        
-       
-        
         <%
-            PedidoController pedidoCon = new PedidoController();
-            ArrayList<Detalle_Pedido> detPed = pedidoCon.detallePedido(1);
-            //pedido = pedidoCon.obtenerPedidos();
-            
-            %>
-            <h1><% 
-               
-                
+            if(request.getAttribute("estadoPedido") != null)
+            {
+                String ad = request.getAttribute("estadoPedido").toString();
+                PedidoController pedidoCon = new PedidoController();
+                Detalle_Pedido estadoPed = (Detalle_Pedido)request.getAttribute("estadoPedido");
+                         
+                             %>
+                         
+                <h3>Datos de pedido</h3>
+                <form>
+                    <label>Nombre Pedido</label><input value="" type=""/>
+                    <label>Tipo Pedido</label><input value="" type=""/>
+                    <label>Estado Pedido</label><input value="" type=""/>
+                    <label>ID Cliente</label><input type=""/>
+                    <label>Repartidor</label><input value="" type=""/>
+                    <label>Ubicación Pedido</label><input value="" type=""/>
+                    <label>Mostrar Ubicación</label><input value="" type=""/>
+                    <select name="cmbRepartidor">
+                    </select>
+                    <input type="submit"/>
+                </form>
 
-            %></h1>
-        
+            <%} %>
+    </div>
+    <hr></hr>
 </body>
 <jsp:include page="footer.jsp"/>

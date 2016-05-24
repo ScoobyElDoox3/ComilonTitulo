@@ -1,3 +1,6 @@
+<%@page import="Model.Repartidor"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.Detalle_Pedido"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : asignarPedido
@@ -66,29 +69,59 @@
             <input type="submit"/>
         </form>
         
-        <h3>Listar</h3>
-        <table>
-            
+        <table class="table-bordered table-striped table">
+            <tr>
+                <td>ID Pedido</td>
+                <td>Detalle</td>
+                <td>Cliente</td>
+                <td>Tipo Despacho</td>
+                <td>Id Convenio</td>
+                <td>Total</td>
+                <td>Seleccionar</td>
+            </tr>
+            <%
+                PedidoController pedidoCon = new PedidoController();
+                Pedido pedido;
+                ArrayList<Detalle_Pedido> listDetPedido = pedidoCon.obtenerPedidos();
+                String html = "";
+                for(int i = 0; i < listDetPedido.size(); i++){
+                    Detalle_Pedido detallePedido  = listDetPedido.get(i);
+                    pedido = detallePedido.getPedido();
+                    out.println("<tr>");
+                    out.println("<td>"+ pedido.getId() +"</td>");
+                    out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
+                    out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
+                    out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
+                    out.println("<td></td>");
+                    out.println("<td>" + pedidoCon.totalVenta + "</td>");
+                    out.println("<td><a href='PedidoServlet?accion=AsignarRepartidor&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
+                    out.println("</tr>");
+                }
+            %>
+            <a href=""></a>
         </table>
         
         <h3>Datos de pedido</h3>
-        <form>
-            <label>Tipo Pedido</label><input type=""/>
-            <label>ID Cliente</label><input type=""/>
-            <label>Repartidor</label>
-            <select name="cmbRepartidor">
-            </select>
-            <input type="submit"/>
-        </form>
         
-       
-        
-        <%
-            PedidoController pedidoCon = new PedidoController();
-            //Pedido pedido = new Pedido();
-            //pedido = pedidoCon.obtenerPedidos();
-            
-            %>
+        <div>
+            <form class="">
+                <label>ID Pedido</label>   <input type=""/><br />
+                <label>Tipo Pedido</label> <input type=""/><br />
+                <label>ID Cliente</label>  <input type=""/><br />
+                <label>Repartidor</label> 
+                <select name="cmbRepartidor">
+                <%
+
+
+                ArrayList<Repartidor> listRepartidor = pedidoCon.seleccionarRepartidor();
+                 for(int i = 0; i < listRepartidor.size(); i++){
+                    out.println("<option value='"+ listRepartidor.get(i).getId() +"'>"+ listRepartidor.get(i).getPersona().getNombre() + "" + listRepartidor.get(i).getPersona().getApp() +"</option>");
+                }
+                %>
+                </select><br />
+                <input type="submit"/>
+            </form>
+        </div>
         
 </body>
 <jsp:include page="footer.jsp"/>

@@ -1,3 +1,4 @@
+<%@page import="Model.Repartidor"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : gestionPedido
@@ -65,16 +66,21 @@
         Pedido pedido;
     %>
         <h1>Gestión Pedido</h1>
-        
+        <% 
+            if(request.getAttribute("msg") != null)
+            {
+               out.print(request.getAttribute("msg"));
+            }  
+        %>
         
         <label>Tipo Pedido</label>    
         <select>
             <option value='NONE'>- Seleccionar -</option>
         <%
-            ArrayList<String> listTipo = pedidoCon.seleccionarTipoPedido();
-             for(int i = 0; i < listTipo.size(); i++){
-                out.println("<option value='"+ listTipo.get(i) +"'>"+ listTipo.get(i) +"</option>");
-            }
+           ArrayList<String> listTipo = pedidoCon.seleccionarTipoPedido();
+                 for(int i = 0; i < listTipo.size(); i++){
+                    out.println("<option value='"+ listTipo.get(i) +"'>"+ listTipo.get(i) +"</option>");
+                }
         %>
         </select>
         
@@ -103,18 +109,18 @@
                     Detalle_Pedido detallePedido  = listDetPedido.get(i);
                     pedido = detallePedido.getPedido();
                     out.println("<tr>");
-                    
                     out.println("<td>"+ pedido.getId() +"</td>");
-                    out.println("<td><a href='gestionPedido.jsp?IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
+                    out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
                     out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
                     out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
                     out.println("<td></td>");
                     out.println("<td>" + pedidoCon.totalVenta + "</td>");
-                    out.println("<td><a href='gestionPedido.jsp?Action=Editar&IDPedido="+pedido.getId()+"'>Editar</a></td>");
-                    out.println("<td><a href='gestionPedido.jsp?Acttion=Eliminar&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
+                    out.println("<td><a href='gestionPedido.jsp?accion=EditarPedido&IDPedido="+pedido.getId()+"'>Editar</a></td>");
+                    out.println("<td><a href='PedidoServlet?accion=EliminarPedido&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
                     out.println("</tr>");
                 }
             %>
+            <a href=""></a>
         </table>
 
         <div>
@@ -129,16 +135,20 @@
                     <td></td>
                 </tr>
                 //forma de obtener get desde url 
-                <% ArrayList<Detalle_Pedido> detPedido = pedidoCon.detallePedido(1); 
-                    for(int i = 0; i< detPedido.size(); i++){
+                <% 
+                    out.print(request.getAttribute("detallePedido"));
+                    if(request.getAttribute("detallePedido") != null){
+                        Detalle_Pedido detped = (Detalle_Pedido)request.getAttribute("detallePedido");
+                        
                         out.println("<tr>");
-                        out.println("<td>"+ detPedido.get(i).getPedido().getId() +"<td>");
-                        out.println("<td>"+ detPedido.get(i).getPedido().getCliente().getIdCliente() +"<td>");
-                        out.println("<td>"+ detPedido.get(i).getPlato().getNombre() +"<td>");
-                        out.println("<td>"+ detPedido.get(i).getPlato().getTipo_plato() +"<td>");
-                        out.println("<td>"+ detPedido.get(i).getPlato().getPrecio() +"<td>");
+                        out.println("<td>"+ detped.getPedido().getId() +"<td>");
+                        out.println("<td>"+ detped.getPedido().getCliente().getIdCliente() +"<td>");
+                        out.println("<td>"+ detped.getPlato().getNombre() +"<td>");
+                        out.println("<td>"+ detped.getPlato().getTipo_plato() +"<td>");
+                        out.println("<td>"+ detped.getPlato().getPrecio() +"<td>");
                         out.println("</tr>");
                     }
+                    
                     
                 %>
                 
