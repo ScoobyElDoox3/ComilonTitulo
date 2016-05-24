@@ -15,15 +15,18 @@ import oracle.jdbc.OracleTypes;
  */
 public class PedidoController {
   
-    public Persona persona;
-    public Cliente cliente;
-    public TipoPedido tipoPedido;
-    public Pedido pedido;
-    public Detalle_Pedido detallePedido;
-    public Detalle_Pedido[] pedidoArray;      
-    public ArrayList<Detalle_Pedido> listDetPedido = new ArrayList<Detalle_Pedido>();
+   public int totalVenta;
     
    public ArrayList<Detalle_Pedido> obtenerPedidos(){
+        Persona persona;
+        Cliente cliente;
+        TipoPedido tipoPedido;
+        Pedido pedido;
+        Detalle_Pedido detallePedido;
+        Plato plato;
+        Venta venta;
+
+        ArrayList<Detalle_Pedido> listDetPedido = new ArrayList<Detalle_Pedido>();
         Conexion con = new Conexion();
         Connection rescon = con.Con(); 
         try {
@@ -39,7 +42,9 @@ public class PedidoController {
                 cliente = new Cliente(rset.getInt(3), rset.getString(5), persona, null);
                 tipoPedido = new TipoPedido(rset.getInt(13), rset.getString(14));
                 pedido = new Pedido(rset.getInt(1), rset.getDate(2), cliente, tipoPedido);
-                detallePedido = new Detalle_Pedido(pedido, null, rset.getInt(15));
+                //venta = new Venta(0, null, rset.getInt(15), pedido);
+                detallePedido = new Detalle_Pedido(pedido, null);
+                totalVenta += rset.getInt(15);
                 listDetPedido.add(detallePedido);
             }
         }catch (Exception ex) {
@@ -51,7 +56,51 @@ public class PedidoController {
         
         
    }
-   
+   //
+   public ArrayList<Detalle_Pedido> detallePedido(int idPedido){
+       Persona persona;
+        Cliente cliente;
+        TipoPedido tipoPedido;
+        Pedido pedido;
+        Detalle_Pedido detallePedido;
+        Plato plato;
+        Venta venta;
+       ArrayList<Detalle_Pedido> detPedido = new ArrayList<Detalle_Pedido>();
+       Conexion con = new Conexion();
+       Connection rescon = con.Con(); 
+        idPedido = 1;
+        try {
+            Statement st;
+            ResultSet rs = null;
+            CallableStatement cStmt = rescon.prepareCall("{call DETALLEPEDIDOLISTAR_BYIDPEDIDO(?,?)}");
+            cStmt.setInt(1, idPedido);
+            cStmt.registerOutParameter(2, OracleTypes.CURSOR);
+            
+            cStmt.executeUpdate();
+            ResultSet rset = (ResultSet)cStmt.getObject(2);
+            while (rset.next ()){
+                persona = new Persona(rset.getInt(4), rset.getString(7), rset.getString(8), rset.getString(9), rset.getString(10), rset.getString(11), rset.getInt(12));
+                cliente = new Cliente(rset.getInt(3), rset.getString(5), persona, null);
+                tipoPedido = new TipoPedido(rset.getInt(13), rset.getString(14));
+                pedido = new Pedido(rset.getInt(1), rset.getDate(2), cliente, tipoPedido);
+                
+                plato = new Plato(rset.getInt(15), rset.getString(16), rset.getString(17), rset.getInt(18), rset.getString(19), null, null);
+                detallePedido = new Detalle_Pedido(pedido, plato);
+                
+                totalVenta += rset.getInt(18);
+                
+                detPedido.add(detallePedido);
+            }
+            
+            
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            con=null;
+        }finally{
+            return detPedido;
+        }
+   }
+   //
    public ArrayList<String> seleccionarTipoPedido(){
         //int asd
        String resultado = "no hay resultado";
@@ -71,5 +120,12 @@ public class PedidoController {
            resultado = ex.getMessage();
        }
        return listTipo;
+   }
+   //
+   public Detalle_Pedido getEstadoPedidoByIdPedido(int idPedido){
+       String procedure = "GetEstadoPedidoByIdPedio";
+       Detalle_Pedido detPed = new Detalle_Pedido(null, null);
+       
+       return detPed;
    }
 }

@@ -30,9 +30,9 @@ public class PersonaServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String action = request.getParameter("action");
+        String action = request.getParameter("action");
         if(action.equals("ingresarTradicional"))
         {   
             String user = request.getParameter("txtUser");

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : consultarEstadoPedido
@@ -8,7 +9,7 @@
 <jsp:include page="header.jsp"/>
 <%@page import="java.sql.Connection"%>
 <%@page import="Controller.PedidoController"%>
-<%@page import="Model.Pedido"%>
+<%@page import="Model.*"%>
 <%
     try
     {   
@@ -60,10 +61,10 @@
         <h1>Con</h1>
         
         <h3>Buscar</h3>
-        <form>
+        <form action="" method="POST">
             <label>Ingrese código de pedido</label>
-            <input type="text" />
-            <input type="submit"/>
+            <input name="idPedido" type="text" />
+            <input action="getPedido" type="submit"/>
         </form>
         
         <h3>Listar</h3>
@@ -73,9 +74,13 @@
         
         <h3>Datos de pedido</h3>
         <form>
+            <label>Nombre Pedido</label>
             <label>Tipo Pedido</label><input type=""/>
+            <label>Estado Peido</label>
             <label>ID Cliente</label><input type=""/>
             <label>Repartidor</label>
+            <label>Ubicación Pedido</label>
+            <label>Mostrar Ubicación</label>
             <select name="cmbRepartidor">
             </select>
             <input type="submit"/>
@@ -85,12 +90,12 @@
         
         <%
             PedidoController pedidoCon = new PedidoController();
-            //Pedido pedido = new Pedido();
+            ArrayList<Detalle_Pedido> detPed = pedidoCon.detallePedido(1);
             //pedido = pedidoCon.obtenerPedidos();
             
             %>
             <h1><% 
-                Pedido pedido = pedidoCon.obtenerPedidos();
+               
                 
 
             %></h1>

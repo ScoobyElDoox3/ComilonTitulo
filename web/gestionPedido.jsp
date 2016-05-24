@@ -108,16 +108,52 @@
                     out.println("<td><a href='gestionPedido.jsp?IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
                     out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
                     out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
-                    out.println("<td>"+ listDetPedido.get(i).getTotalVenta() +"</td>");
-                    out.println("<td>" + listDetPedido.get(i).getTotalVenta() + "</td>");
+                    out.println("<td></td>");
+                    out.println("<td>" + pedidoCon.totalVenta + "</td>");
                     out.println("<td><a href='gestionPedido.jsp?Action=Editar&IDPedido="+pedido.getId()+"'>Editar</a></td>");
                     out.println("<td><a href='gestionPedido.jsp?Acttion=Eliminar&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
                     out.println("</tr>");
                 }
             %>
         </table>
+
+        <div>
+            <label>ID Pedido:</label> <strong><label><% %></label></strong>
+            <table id="tblDetalle" style="display: none;">
+                <tr>
+                    <td>ID Pedido</td>
+                    <td>Cliente<td>
+                    <td>Plato</td>
+                    <td>Tipo Plato</td>
+                    <td>Precio</td>
+                    <td></td>
+                </tr>
+                //forma de obtener get desde url 
+                <% ArrayList<Detalle_Pedido> detPedido = pedidoCon.detallePedido(1); 
+                    for(int i = 0; i< detPedido.size(); i++){
+                        out.println("<tr>");
+                        out.println("<td>"+ detPedido.get(i).getPedido().getId() +"<td>");
+                        out.println("<td>"+ detPedido.get(i).getPedido().getCliente().getIdCliente() +"<td>");
+                        out.println("<td>"+ detPedido.get(i).getPlato().getNombre() +"<td>");
+                        out.println("<td>"+ detPedido.get(i).getPlato().getTipo_plato() +"<td>");
+                        out.println("<td>"+ detPedido.get(i).getPlato().getPrecio() +"<td>");
+                        out.println("</tr>");
+                    }
+                    
+                %>
+                
+            </table>    
+        </div>
+        
+        
+        
         <script>
             //$("body").append("<% //out.print(listDetPedido.get(1).getTotalVenta()); %>");
+
+            if(location.search != ""){
+                document.getElementById("tblDetalle").style.currentStyle.display = "block";
+
+            }
         </script>
 </body>
 <jsp:include page="footer.jsp"/>

@@ -12,12 +12,10 @@ package Model;
 public class Detalle_Pedido {
     private Pedido pedido;
     private Plato plato;
-    private int totalVenta;
 
-    public Detalle_Pedido(Pedido pedido, Plato plato, int totalVenta) {
+    public Detalle_Pedido(Pedido pedido, Plato plato) {
         this.pedido = pedido;
         this.plato = plato;
-        this.totalVenta = totalVenta;
     }
 
     public Pedido getPedido() {
@@ -35,14 +33,7 @@ public class Detalle_Pedido {
     public void setPlato(Plato plato) {
         this.plato = plato;
     }
-
-    public int getTotalVenta() {
-        return totalVenta;
-    }
-
-    public void setTotalVenta(int totalVenta) {
-        this.totalVenta = totalVenta;
-    }
+    
     
     
 }
