@@ -11,15 +11,15 @@ import Model.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+//import javax.vax.faces.bean.ManagedBean;
+//import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author Valentin Levenier
  */
-@ManagedBean
-@RequestScoped
+//@ManagedBean
+//@RequestScoped
 public class personaBean {
 
     /**

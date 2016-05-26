@@ -12,17 +12,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+//import javax.faces.application.FacesMessage;
+//import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.RequestScoped;
+//import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Valentin Levenier
  */
-@ManagedBean
-@RequestScoped
+//@ManagedBean
+//@RequestScoped
 public class userBean {
 
     /**
