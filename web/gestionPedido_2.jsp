@@ -110,10 +110,7 @@
                     pedido = detallePedido.getPedido();
                     out.println("<tr>");
                     out.println("<td>"+ pedido.getId() +"</td>");
-                    //out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
-                    %>
-                    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#<%  out.print(pedido.getId()); %>">Ver detalle</button></td>
-                    <%
+                    out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
                     out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
                     out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
                     out.println("<td></td>");
@@ -121,30 +118,6 @@
                     out.println("<td><a href='gestionPedido.jsp?accion=EditarPedido&IDPedido="+pedido.getId()+"'>Editar</a></td>");
                     out.println("<td><a href='PedidoServlet?accion=EliminarPedido&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
                     out.println("</tr>");
-                    %>
-                   
-                    <div class="modal fade" id="<%  out.print(pedido.getId()); %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="<%  out.print(pedido.getId()); %>">Ver Detalle</h4>
-            </div>
-            <div class="modal-body">
-            Este es eñ body
-         Nomnr   <input type="text" name="txtUser" value="" required/>
-                  
-            
-          </div>
-          <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-              <%
                 }
             %>
             <a href=""></a>

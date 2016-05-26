@@ -26,7 +26,7 @@ public class Conexion {
    
     String driver = "oracle.jdbc.driver.OracleDriver";
     //Localhost
-    String url = "jdbc:oracle:thin:@localhost:1521:xe";    
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";    
     String user = "elcomilon";
     String password = "elcomilon1";
     public Statement Conectar(){    

@@ -109,8 +109,9 @@
                     Detalle_Pedido detallePedido  = listDetPedido.get(i);
                     pedido = detallePedido.getPedido();
                     out.println("<tr>");
-                    out.println("<td>"+ pedido.getId() +"</td>");
+                    //out.println("<td>"+ pedido.getId() +"</td>");
                     out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
+                    out.println("<td><button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#"+pedido.getId()+"'>Ver detalle</button></td>");
                     out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
                     out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
                     out.println("<td></td>");
@@ -118,22 +119,43 @@
                     out.println("<td><a href='gestionPedido.jsp?accion=EditarPedido&IDPedido="+pedido.getId()+"'>Editar</a></td>");
                     out.println("<td><a href='PedidoServlet?accion=EliminarPedido&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
                     out.println("</tr>");
+                    %>
+                   
+                    <div class="modal fade" id="<%  out.print(pedido.getId()); %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="<%  out.print(pedido.getId()); %>">Ver Detalle</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <label></label>
+                                    <label></label>
+                                    <label></label>
+                                     <label>ID Pedido</label> <% out.print(detallePedido.getPedido().getId()); %>
+                                      
+                                            <label>Cliente<label><% out.println(detallePedido.getPedido().getCliente().getIdCliente() ); %>
+                                            <label>Plato</label><% //out.println(detallePedido.getPlato().getNombre()); %>
+                                            <label>Tipo Plato</label><% //out.println(detallePedido.getPlato().getTipo_plato()); %>
+                                            <label>Precio</label><% //out.println(detallePedido.getPlato().getPrecio()); %>
+                                            <label></label>   
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              <%
                 }
             %>
             <a href=""></a>
-        </table>
 
         <div>
             <label>ID Pedido:</label> <strong><label><% %></label></strong>
-            <table id="tblDetalle" style="display: none;">
-                <tr>
-                    <td>ID Pedido</td>
-                    <td>Cliente<td>
-                    <td>Plato</td>
-                    <td>Tipo Plato</td>
-                    <td>Precio</td>
-                    <td></td>
-                </tr>
+            
                 //forma de obtener get desde url 
                 <% 
                     out.print(request.getAttribute("detallePedido"));
