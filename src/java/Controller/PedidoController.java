@@ -100,17 +100,33 @@ public class PedidoController {
    }
    //
    public Detalle_Pedido getEstadoPedidoByIdPedido(int idPedido){
-       String procedure = "GetEstadoPedidoByIdPedio";
        Detalle_Pedido detPed = new Detalle_Pedido(null, null);
-       /*
-        SELECT p.ID_PEDIDO, t.NOMBRE
-        FROM PEDIDO p
-        JOIN TIPO_PEDIDO t
-        ON p.ID_TIPO_PEDIDO = t.ID_TIPO_PEDIDO
-        JOIN VENTA v
-        ON v.ID_PEDIDO = p.ID_PEDIDO
-
-       */
+       Conexion con = new Conexion();
+        Connection rescon = con.Con(); 
+        try {
+            Statement st;
+            ResultSet rs = null;
+            CallableStatement cStmt = rescon.prepareCall("{call GetEstadoPedidoByIdPedio(?)}");
+            cStmt.setInt(1, idPedido);
+            cStmt.registerOutParameter(2, OracleTypes.CURSOR);
+            cStmt.executeUpdate();
+            ResultSet rset = (ResultSet)cStmt.getObject(2);
+            while (rset.next ()){
+//                persona = new Persona(rset.getInt(4), rset.getString(7), rset.getString(8), rset.getString(9), rset.getString(10), rset.getString(11), rset.getInt(12));
+//                cliente = new Cliente(rset.getInt(3), rset.getString(5), persona, null);
+//                tipoPedido = new TipoPedido(rset.getInt(13), rset.getString(14));
+//                pedido = new Pedido(rset.getInt(1), rset.getDate(2), cliente, tipoPedido);
+//                plato = new Plato(rset.getInt(15), rset.getString(16), rset.getString(17), rset.getInt(18), rset.getString(19), null, null);
+//                detallePedido = new Detalle_Pedido(pedido, plato);
+//                totalVenta += rset.getInt(18);
+//                
+//                detPedido.add(detallePedido);
+            }
+            
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            con=null;
+        }
        
        return detPed;
    }

@@ -69,23 +69,31 @@
             <input name="enviar" type="submit"/>
         </form>
         <%
-            if(request.getAttribute("estadoPedido") != null)
+            Detalle_Pedido estadoPed = (Detalle_Pedido)request.getAttribute("estadoPedido");
+            if(estadoPed != null)
             {
-                String ad = request.getAttribute("estadoPedido").toString();
-                PedidoController pedidoCon = new PedidoController();
-                Detalle_Pedido estadoPed = (Detalle_Pedido)request.getAttribute("estadoPedido");
+                //String ad = request.getAttribute("estadoPedido").toString();
+                //PedidoController pedidoCon = new PedidoController();
+                //
                          
-                             %>
+        %>
                          
                 <h3>Datos de pedido</h3>
                 <form>
-                    <label>Nombre Pedido</label><input value="" type=""/>
+                    
+                    <label>ID Pedido</label>
+                    
                     <label>Tipo Pedido</label><input value="" type=""/>
-                    <label>Estado Pedido</label><input value="" type=""/>
-                    <label>ID Cliente</label><input type=""/>
-                    <label>Repartidor</label><input value="" type=""/>
-                    <label>Ubicación Pedido</label><input value="" type=""/>
-                    <label>Mostrar Ubicación</label><input value="" type=""/>
+                    <label>Fecha Entrega</label>
+                    <label>Tiempo de entreega</label>
+                    <label>Estado Pedido</label>
+                    <label>Nombre Cliente</label>
+                    <label>Teléfono</label>
+                    <label>Dirección</label>
+                    <label>Comuna</label>
+                    <label>Número</label>
+                    <label>Repartidor</label>
+                    
                     <select name="cmbRepartidor">
                     </select>
                     <input type="submit"/>

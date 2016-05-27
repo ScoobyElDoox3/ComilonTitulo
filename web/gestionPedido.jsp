@@ -100,7 +100,7 @@
                 <td>Tipo Despacho</td>
                 <td>Id Convenio</td>
                 <td>Total</td>
-                <td>Editar</td>
+                <!--<td>Editar</td>-->
                 <td>Eliminar</td>
             </tr>
             <%
@@ -108,15 +108,16 @@
                 for(int i = 0; i < listDetPedido.size(); i++){
                     Detalle_Pedido detallePedido  = listDetPedido.get(i);
                     pedido = detallePedido.getPedido();
+                    
                     out.println("<tr>");
-                    //out.println("<td>"+ pedido.getId() +"</td>");
-                    out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
+                    out.println("<td>"+ pedido.getId() +"</td>");
+                    //out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
                     out.println("<td><button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#"+pedido.getId()+"'>Ver detalle</button></td>");
                     out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
                     out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
                     out.println("<td></td>");
                     out.println("<td>" + pedidoCon.totalVenta + "</td>");
-                    out.println("<td><a href='gestionPedido.jsp?accion=EditarPedido&IDPedido="+pedido.getId()+"'>Editar</a></td>");
+                    //out.println("<td><a href='gestionPedido.jsp?accion=EditarPedido&IDPedido="+pedido.getId()+"'>Editar</a></td>");
                     out.println("<td><a href='PedidoServlet?accion=EliminarPedido&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
                     out.println("</tr>");
                     %>
@@ -132,13 +133,17 @@
                                     <label></label>
                                     <label></label>
                                     <label></label>
-                                     <label>ID Pedido</label> <% out.print(detallePedido.getPedido().getId()); %>
-                                      
-                                            <label>Cliente<label><% out.println(detallePedido.getPedido().getCliente().getIdCliente() ); %>
-                                            <label>Plato</label><% //out.println(detallePedido.getPlato().getNombre()); %>
-                                            <label>Tipo Plato</label><% //out.println(detallePedido.getPlato().getTipo_plato()); %>
-                                            <label>Precio</label><% //out.println(detallePedido.getPlato().getPrecio()); %>
-                                            <label></label>   
+                                    <%  out.println("<label>ID Pedido;</label><span> " + listDetPedido.get(i).getPedido().getId()  + "</span><br />");
+                                        out.println("<label>Cliente:</label><span> " + listDetPedido.get(i).getPedido().getCliente().getPersona().getNombre() + " " + listDetPedido.get(i).getPedido().getCliente().getPersona().getApp()+ "</span></br>"); 
+                                         out.println("<label>Plato;</label><span> Porotos con riendas" + "</span></br>"); 
+                                        out.println("<label>Tipo Plato:</label><span> Entrada" + "</span></br>"); 
+                                        out.println("<label>Precio:</label><span> 4500" + "</span></br>"); 
+                                        
+                                       //out.println("<label>Plato</label><span>" +listDetPedido.get(i).getPlato().getId_plato()  + "</br>"); 
+                                       // out.println("<label>Tipo Plato</label><span>" + listDetPedido.get(i).getPlato().getTipo_plato()  + "</br>"); 
+                                        //out.println("<label>Precio</label><span>" + listDetPedido.get(i).getPlato().getPrecio()  + "</br>"); 
+                                    %>
+                                          
 
                                 </div>
                                 <div class="modal-footer">

@@ -43,7 +43,7 @@ public class PedidoServlet extends HttpServlet {
         {   
             int idPedido = Integer.parseInt(request.getParameter("idPedido"));
             Detalle_Pedido detped =  pedcon.getEstadoPedidoByIdPedido(idPedido);
-            request.setAttribute("estadoPedido", "asd");
+            request.setAttribute("estadoPedido", detped);
             request.getRequestDispatcher("consultarEstadoPedido.jsp").forward(request, response);
         }
         
