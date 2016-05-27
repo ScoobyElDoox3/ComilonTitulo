@@ -78,26 +78,25 @@
                          
         %>
                          
-                <h3>Datos de pedido</h3>
-                <form>
-                    
-                    <label>ID Pedido</label>
-                    
-                    <label>Tipo Pedido</label><input value="" type=""/>
-                    <label>Fecha Entrega</label>
-                    <label>Tiempo de entreega</label>
-                    <label>Estado Pedido</label>
-                    <label>Nombre Cliente</label>
-                    <label>Teléfono</label>
-                    <label>Dirección</label>
-                    <label>Comuna</label>
-                    <label>Número</label>
-                    <label>Repartidor</label>
-                    
-                    <select name="cmbRepartidor">
-                    </select>
-                    <input type="submit"/>
-                </form>
+        <h3>Datos de pedido</h3><br>
+        <form>
+
+            <label>ID Pedido</label>
+
+            <label>Tipo Pedido</label><input value="" type=""/><br />
+            <label>Fecha Entrega</label><br />
+            <label>Tiempo de entreega</label><br />
+            <label>Estado Pedido</label><br />
+            <label>Nombre Cliente</label><br />
+            <label>Teléfono</label><br />
+            <label>Dirección</label><br />
+            <label>Comuna</label><br />
+            <label>Número</label><br />
+            <label>Repartidor</label><br />
+
+
+            <!-- input type="submit"/> -->
+        </form>
 
             <%} %>
     </div>
