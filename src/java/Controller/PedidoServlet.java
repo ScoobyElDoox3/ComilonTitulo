@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Despacho;
 import Model.Detalle_Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,21 +43,39 @@ public class PedidoServlet extends HttpServlet {
         if(action.equals("getEstadoPedido"))
         {   
             int idPedido = Integer.parseInt(request.getParameter("idPedido"));
-            Detalle_Pedido detped =  pedcon.getEstadoPedidoByIdPedido(idPedido);
-            request.setAttribute("estadoPedido", detped);
+            Despacho despacho =  pedcon.getEstadoPedidoByIdPedido(idPedido);
+            request.setAttribute("estadoPedido", despacho);
             request.getRequestDispatcher("consultarEstadoPedido.jsp").forward(request, response);
         }
-        
+        if(action.equals("EditarPedido")){
+            int idPedido = Integer.parseInt(request.getParameter("IDPedido"));
+            ArrayList<Detalle_Pedido> detPed = pedcon.getDetallePedido(idPedido);
+            request.setAttribute("EditDetPedido", detPed);
+
+            request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
+        }
         if(action.equals("EliminarPedido")){
             int idPedido = Integer.parseInt(request.getParameter("IDPedido"));
             pedcon.eliminarPedidoById(idPedido);
-            request.setAttribute("msg", "Pedido con id " + idPedido + " eliminado");
+            request.setAttribute("msg", "Pedido con ID <strong>"+ idPedido +"</strong> eliminado correctamente");
             request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
         }
         if(action.equals("VerDetalle")){
+            PrintWriter out = response.getWriter();
+
             int idPedido = Integer.parseInt(request.getParameter("IDPedido"));
             ArrayList<Detalle_Pedido> detPed = pedcon.getDetallePedido(idPedido);
             request.setAttribute("detPedido", detPed);
+
+            request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
+        }
+        
+        if(action.equals("EliminarPlatoPedido")){
+            int idPedido = Integer.parseInt(request.getParameter("IDPedido"));
+            int idPlato = Integer.parseInt(request.getParameter("IDPlato"));
+            
+            pedcon.eliminarDetallePedido(idPedido, idPlato);
+            request.setAttribute("msg", "Pedido con ID <strong>"+ idPedido +"</strong> eliminado correctamente");
             request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
         }
     }

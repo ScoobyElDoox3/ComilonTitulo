@@ -65,7 +65,8 @@
         <h3>Datos</h3>
         <form>
             <label>Ingrese código de pedido</label>
-            <input type="text" />
+            <input type="text" name="codPedido"/>
+            <input type="hidden" name="accion" value="buscarPedido"/>
             <input type="submit"/>
         </form>
         

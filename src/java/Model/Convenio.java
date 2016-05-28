@@ -18,16 +18,14 @@ public class Convenio {
     private Date fecha_contrato;
     private Date fecha_caducacion;
     private int saldo_trabajador;
-    private Empresa empresa;
 
-    public Convenio(int id_convenio, String nombre_convenio, String descripcion, Date fecha_contrato, Date fecha_caducacion, int saldo_trabajador, Empresa empresa) {
+    public Convenio(int id_convenio, String nombre_convenio, String descripcion, Date fecha_contrato, Date fecha_caducacion, int saldo_trabajador) {
         this.id_convenio = id_convenio;
         this.nombre_convenio = nombre_convenio;
         this.descripcion = descripcion;
         this.fecha_contrato = fecha_contrato;
         this.fecha_caducacion = fecha_caducacion;
         this.saldo_trabajador = saldo_trabajador;
-        this.empresa = empresa;
     }
 
     public int getId_convenio() {
@@ -78,12 +76,4 @@ public class Convenio {
         this.saldo_trabajador = saldo_trabajador;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-    
 }

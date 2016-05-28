@@ -64,14 +64,15 @@
         <h3>Buscar</h3>
         <form action="PedidoServlet" method="POST">
             <label>Ingrese código de pedido</label>
-            <input name="idPedido" type="text" />
+            <input name="idPedido" type="number" />
             <input type="hidden" name="accion" value="getEstadoPedido" />
             <input name="enviar" type="submit"/>
         </form>
         <%
-            Detalle_Pedido estadoPed = (Detalle_Pedido)request.getAttribute("estadoPedido");
-            if(estadoPed != null)
+            if(request.getAttribute("estadoPedido") != null)
             {
+                Despacho estadoPed = (Despacho)request.getAttribute("estadoPedido");
+            
                 //String ad = request.getAttribute("estadoPedido").toString();
                 //PedidoController pedidoCon = new PedidoController();
                 //
@@ -81,18 +82,16 @@
         <h3>Datos de pedido</h3><br>
         <form>
 
-            <label>ID Pedido</label>
-
-            <label>Tipo Pedido</label><input value="" type=""/><br />
-            <label>Fecha Entrega</label><br />
-            <label>Tiempo de entreega</label><br />
-            <label>Estado Pedido</label><br />
-            <label>Nombre Cliente</label><br />
-            <label>Teléfono</label><br />
-            <label>Dirección</label><br />
-            <label>Comuna</label><br />
-            <label>Número</label><br />
-            <label>Repartidor</label><br />
+            <label>ID Pedido: </label> <% out.println(estadoPed.getPedido().getId()); %><br />
+            <label>Tipo Pedido: </label><% out.println(estadoPed.getPedido().getTipoPedido().getNombre()); %><br />
+            <label>Fecha Entrega: </label><% out.println(estadoPed.getPedido().getFechaEntrega()); %><br />
+            <label>Estado Pedido: </label><br /> <% out.println(estadoPed.getPedido().getEstadoPedido().getDescripcion()); %><br />
+            <label>Nombre Cliente: </label><% out.println(estadoPed.getPedido().getCliente().getPersona().getNombre() + " " + estadoPed.getPedido().getCliente().getPersona().getApp() + " " + estadoPed.getPedido().getCliente().getPersona().getApm()); %><br />
+            <label>Teléfono: </label><% out.println(estadoPed.getPedido().getCliente().getPersona().getTelefono()); %><br />
+            <label>Dirección: </label><% out.println(estadoPed.getDireccion()); %><br />
+            <label>Comuna: </label><% out.println(estadoPed.getComuna()); %><br />
+            <label>Número: </label><% out.println(estadoPed.getNumeracion()); %><br />
+            <label>Repartidor: </label><% out.println(estadoPed.getRepartidor().getPersona().getNombre() + " " + estadoPed.getRepartidor().getPersona().getApp()); %><br />
 
 
             <!-- input type="submit"/> -->

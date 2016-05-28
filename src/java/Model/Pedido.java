@@ -16,20 +16,32 @@ public class Pedido {
     private Date fechaEntrega;
     private Cliente cliente;
     private TipoPedido tipoPedido;
+    private Estado_Pedido estadoPedido;
 
-    public Pedido() {
-        this.id = 0;
-        this.fechaEntrega = null;
-        this.cliente = new Cliente();
-        this.tipoPedido = new TipoPedido();
-    }
-    
     public Pedido(int id, Date fechaEntrega, Cliente cliente, TipoPedido tipoPedido) {
         this.id = id;
         this.fechaEntrega = fechaEntrega;
         this.cliente = cliente;
         this.tipoPedido = tipoPedido;
     }
+    
+    public Pedido(int id, Date fechaEntrega, Cliente cliente, TipoPedido tipoPedido, Estado_Pedido estadoPedido) {
+        this.id = id;
+        this.fechaEntrega = fechaEntrega;
+        this.cliente = cliente;
+        this.tipoPedido = tipoPedido;
+        this.estadoPedido = estadoPedido;
+    }
+
+    public Estado_Pedido getEstadoPedido() {
+        return estadoPedido;
+    }
+
+    public void setEstadoPedido(Estado_Pedido estadoPedido) {
+        this.estadoPedido = estadoPedido;
+    }
+    
+    
     
     public int getId() {
         return id;

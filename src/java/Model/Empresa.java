@@ -14,23 +14,30 @@ public class Empresa {
     private String nombre;
     private String direccion;
     private int telefono;
-
-    public Empresa() {
+    private Convenio convenio;
+public Empresa() {
         this.idEmpresa = 0;
         this.nombre = "";
         this.direccion = "";
         this.telefono = 0;
     }
-
-    public Empresa(int idEmpresa, String nombre, String direccion, int telefono) {
+    public Empresa(int idEmpresa, String nombre, String direccion, int telefono, Convenio convenio) {
         this.idEmpresa = idEmpresa;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.convenio = convenio;
     }
 
     
     
+    public Convenio getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(Convenio convenio) {
+        this.convenio = convenio;
+    }
     public int getIdEmpresa() {
         return idEmpresa;
     }

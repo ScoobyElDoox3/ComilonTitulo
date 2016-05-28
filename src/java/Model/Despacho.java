@@ -17,6 +17,9 @@ public class Despacho {
     private Pedido pedido;
     private Repartidor repartidor;
 
+    public Despacho(){
+        
+    }
     public Despacho(int id, String direccion, String comuna, int numeracion, Pedido pedido, Repartidor repartidor) {
         this.id = id;
         this.direccion = direccion;
