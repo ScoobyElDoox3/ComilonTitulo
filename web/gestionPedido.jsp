@@ -97,7 +97,7 @@
         
         <label>Tipo Pedido</label>    
         <select id="cmbTipoPedido" name="cmbTipoPedido">
-            <option value='NONE'>- Seleccionar -</option>
+            <option value='0'>- Seleccionar -</option>
         <%
            ArrayList<String> listTipo = pedidoCon.seleccionarTipoPedido();
             for(int i = 0; i < listTipo.size(); i++){
@@ -203,8 +203,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -235,14 +234,14 @@
                                     out.println("<table class='table'>");
                                     out.println("<tr>");
                                     out.println("<td><strong>Nombre plato</strong></td>");
-                                    out.println("<td><strong>Editar</strong></td>");
+                                    //out.println("<td><strong>Editar</strong></td>");
                                     out.println("<td><strong>Eliminar</strong></td>");
                                     out.println("</tr>");
                                     
                                     for(int i = 0; i<detPed.size(); i++){
                                         out.println("<tr>");
                                         out.println("<td>"+ detPed.get(i).getPlato().getNombre() +"</td>");
-                                        out.println("<td><a href='PedidoServlet?accion=ActualizarPedido&IDPedido="+detPed.get(i).getPedido().getId()+"'>Editar</a></td>");
+                                        //out.println("<td><a href='PedidoServlet?accion=ActualizarPedido&IDPedido="+detPed.get(i).getPedido().getId()+"'>Editar</a></td>");
                                         out.println("<td><a href='PedidoServlet?accion=EliminarPlatoPedido&IDPedido="+detPed.get(i).getPedido().getId()+"&IDPlato="+ detPed.get(i).getPlato().getId_plato()+" '>Eliminar</a</td>");
                                         out.println("</tr>");
                                     }
@@ -250,8 +249,8 @@
                                 %>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -83,7 +83,7 @@ public class PedidoController {
             cStmt.registerOutParameter(2, OracleTypes.CURSOR);
             
             cStmt.execute ();
-            ResultSet rset = (ResultSet)cStmt.getObject(1);
+            ResultSet rset = (ResultSet)cStmt.getObject(2);
             while (rset.next ()){
                 persona = new Persona(rset.getInt(4), rset.getString(7), rset.getString(8), rset.getString(9), rset.getString(10), rset.getString(11), rset.getInt(12));
                 convenio = new Convenio(rset.getInt(20), rset.getString(21), rset.getString(22), rset.getDate(23), rset.getDate(24), rset.getInt(25));
