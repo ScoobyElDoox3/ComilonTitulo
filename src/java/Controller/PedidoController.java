@@ -62,6 +62,52 @@ public class PedidoController {
         
    }
    //
+   public ArrayList<Detalle_Pedido> obtenerPedidosByTipoPedido(String tp){
+        Persona persona;
+        Cliente cliente;
+        TipoPedido tipoPedido;
+        Pedido pedido;
+        Detalle_Pedido detallePedido;
+        Plato plato;
+        Venta venta;
+        Empresa empresa;
+        Convenio convenio;
+        ArrayList<Detalle_Pedido> listDetPedido = new ArrayList<Detalle_Pedido>();
+        Conexion con = new Conexion();
+        Connection rescon = con.Con(); 
+        try {
+            Statement st;
+            ResultSet rs = null;
+            CallableStatement cStmt = rescon.prepareCall("{call PEDIDOLISTARBYTIPOPEDIDO(?, ?)}");
+            cStmt.setString(1, tp);
+            cStmt.registerOutParameter(2, OracleTypes.CURSOR);
+            
+            cStmt.execute ();
+            ResultSet rset = (ResultSet)cStmt.getObject(1);
+            while (rset.next ()){
+                persona = new Persona(rset.getInt(4), rset.getString(7), rset.getString(8), rset.getString(9), rset.getString(10), rset.getString(11), rset.getInt(12));
+                convenio = new Convenio(rset.getInt(20), rset.getString(21), rset.getString(22), rset.getDate(23), rset.getDate(24), rset.getInt(25));
+                empresa = new Empresa(rset.getInt(16), rset.getString(17), rset.getString(18), rset.getInt(19), convenio);
+                cliente = new Cliente(rset.getInt(3), rset.getString(5), persona, empresa);
+                tipoPedido = new TipoPedido(rset.getInt(13), rset.getString(14));
+                pedido = new Pedido(rset.getInt(1), rset.getDate(2), cliente, tipoPedido);
+                //venta = new Venta(0, null, rset.getInt(15), pedido);
+                
+               
+                detallePedido = new Detalle_Pedido(pedido, null);
+                totalVenta += rset.getInt(15);
+                listDetPedido.add(detallePedido);
+            }
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            con=null;
+        }finally{
+            return listDetPedido;
+        }
+        
+        
+   }
+   //
    public ArrayList<Detalle_Pedido> getDetallePedido(int idPedido){
         Persona persona;
         Cliente cliente;
@@ -135,6 +181,7 @@ public class PedidoController {
                 tipoPedido = new TipoPedido(rset.getInt(3), rset.getString(4));
                 estadoPed = new Estado_Pedido(rset.getInt(21), rset.getInt(22), rset.getString(23));
                 pedido = new Pedido(rset.getInt(1), rset.getDate(2), cliente, tipoPedido, estadoPed);
+                persona = new Persona(rset.getInt(20), rset.getString(24), rset.getString(25), rset.getString(26), rset.getString(27), rset.getString(28), rset.getInt(29));
                 //plato = new Plato(rset.getInt(15), rset.getString(16), rset.getString(17), rset.getInt(18), rset.getString(19), null, null);
                 repartidor = new Repartidor(rset.getInt(17), rset.getString(18), rset.getString(19), persona);
                 despacho = new Despacho(idPedido, rset.getString(14), rset.getString(15), rset.getInt(16), pedido, repartidor);
@@ -166,7 +213,8 @@ public class PedidoController {
             con=null;
         }
     }
-    public void eliminarDetallePedido(int idPedido, int idplato){
+   //
+   public void eliminarDetallePedido(int idPedido, int idplato){
         Conexion con = new Conexion();
         Connection rescon = con.Con(); 
         try {
@@ -184,6 +232,24 @@ public class PedidoController {
         }
    }
    //
+   public void asignarRepartidorPedido(int idPedido, int idRepartidor){
+       Conexion con = new Conexion();
+        Connection rescon = con.Con(); 
+        try {
+            Statement st;
+            ResultSet rs = null;
+            CallableStatement cStmt = rescon.prepareCall("{call ASIGNARREPARTIDOR(?, ?)}");
+            cStmt.setInt(1, idPedido);
+             cStmt.setInt(2, idRepartidor);
+            cStmt.executeUpdate();
+        
+            
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            con=null;
+        }
+   }
+    //
    public ArrayList<String> seleccionarTipoPedido(){
         //int asd
        String resultado = "no hay resultado";

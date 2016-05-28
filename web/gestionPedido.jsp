@@ -96,20 +96,30 @@
         %>
         
         <label>Tipo Pedido</label>    
-        <select>
+        <select id="cmbTipoPedido" name="cmbTipoPedido">
             <option value='NONE'>- Seleccionar -</option>
         <%
            ArrayList<String> listTipo = pedidoCon.seleccionarTipoPedido();
-                 for(int i = 0; i < listTipo.size(); i++){
-                    out.println("<option value='"+ listTipo.get(i) +"'>"+ listTipo.get(i) +"</option>");
-                }
+            for(int i = 0; i < listTipo.size(); i++){
+               out.println("<option value='"+ listTipo.get(i) +"'>"+ listTipo.get(i) +"</option>");
+           }
         %>
         </select>
+        <script>
+            $("#cmbTipoPedido").change(function(){
+                var tipo = $(this).val();
+                window.location = "PedidoServlet?accion=ListarByTipoPedido&TipoPedido=" + tipo;
+            });
+        </script>
         
         <%
-            
-            ArrayList<Detalle_Pedido> listDetPedido = pedidoCon.obtenerPedidos();
-            
+            ArrayList<Detalle_Pedido> listDetPedido;
+            if(request.getAttribute("detallePedidoByTipoPedido") == null){
+                listDetPedido = pedidoCon.obtenerPedidos();
+            }
+            else{
+                listDetPedido = (ArrayList<Detalle_Pedido>)request.getAttribute("detallePedidoByTipoPedido");
+            }
             %>
             
             <table class="table-bordered table-striped table">

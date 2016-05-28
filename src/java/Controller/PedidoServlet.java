@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author bruno
+ * @author JOHN
  */
 @WebServlet(name = "PedidoServlet", urlPatterns = {"/PedidoServlet"}, initParams = {
     @WebInitParam(name = "Name", value = "Value")})
@@ -45,7 +45,14 @@ public class PedidoServlet extends HttpServlet {
             int idPedido = Integer.parseInt(request.getParameter("idPedido"));
             Despacho despacho =  pedcon.getEstadoPedidoByIdPedido(idPedido);
             request.setAttribute("estadoPedido", despacho);
-            request.getRequestDispatcher("consultarEstadoPedido.jsp").forward(request, response);
+            String from = (String)request.getParameter("from");
+            if(from.equals("consultarEstadoPedido")){
+                request.getRequestDispatcher("consultarEstadoPedido.jsp").forward(request, response);
+            }
+            else
+            {
+                request.getRequestDispatcher("AsignarRepartidor.jsp").forward(request, response);
+            }
         }
         if(action.equals("EditarPedido")){
             int idPedido = Integer.parseInt(request.getParameter("IDPedido"));
@@ -76,6 +83,19 @@ public class PedidoServlet extends HttpServlet {
             
             pedcon.eliminarDetallePedido(idPedido, idPlato);
             request.setAttribute("msg", "Pedido con ID <strong>"+ idPedido +"</strong> eliminado correctamente");
+            request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
+        }
+        if(action.equals("asignarRepartidor")){
+            int idPedido = Integer.parseInt(request.getParameter("idPedido"));
+            int idRepartidor = Integer.parseInt(request.getParameter("cmbRepartidor"));
+            pedcon.asignarRepartidorPedido(idPedido, idRepartidor);
+            request.setAttribute("msg", "Pedido asignado correctamente");
+            request.getRequestDispatcher("AsignarRepartidor.jsp").forward(request, response);
+        }
+        if(action.equals("ListarByTipoPedido")){
+            String tipoPedido = (String)request.getParameter("TipoPedido");
+            ArrayList<Detalle_Pedido> listDetPedido = pedcon.obtenerPedidosByTipoPedido(tipoPedido);
+            request.setAttribute("detallePedidoByTipoPedido", listDetPedido);
             request.getRequestDispatcher("gestionPedido.jsp").forward(request, response);
         }
     }

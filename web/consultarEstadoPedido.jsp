@@ -66,6 +66,7 @@
             <label>Ingrese código de pedido</label>
             <input name="idPedido" type="number" />
             <input type="hidden" name="accion" value="getEstadoPedido" />
+            <input type="hidden" name="from" value="consultarEstadoPedido"  />
             <input name="enviar" type="submit"/>
         </form>
         <%

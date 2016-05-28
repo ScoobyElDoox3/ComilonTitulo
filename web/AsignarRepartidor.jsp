@@ -1,3 +1,4 @@
+<%@page import="Model.Despacho"%>
 <%@page import="Model.Repartidor"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Detalle_Pedido"%>
@@ -63,66 +64,93 @@
         <h1>Asignar Repartidor</h1>
         
         <h3>Datos</h3>
-        <form>
+        <form action="PedidoServlet" method="POST">
             <label>Ingrese código de pedido</label>
-            <input type="text" name="codPedido"/>
-            <input type="hidden" name="accion" value="buscarPedido"/>
-            <input type="submit"/>
+            <input name="idPedido" type="number" />
+            <input type="hidden" name="accion" value="getEstadoPedido" /> 
+            <input type="hidden" name="from" value="getAsignarRepartidor"  />    
+            <input name="enviar" type="submit"/>
         </form>
         
+        
+            <%
+                if(request.getAttribute("estadoPedido") != null){
+                %>    
         <table class="table-bordered table-striped table">
             <tr>
                 <td>ID Pedido</td>
-                <td>Detalle</td>
                 <td>Cliente</td>
-                <td>Tipo Despacho</td>
-                <td>Id Convenio</td>
-                <td>Total</td>
-                <td>Seleccionar</td>
+                <td>Tipo Pedido</td>
+                <td>Comuna</td>
+                <td>Direccion</td>
+                <td>Número</td>
+                <td>Repartidor</td>
             </tr>
-            <%
-                PedidoController pedidoCon = new PedidoController();
-                Pedido pedido;
-                ArrayList<Detalle_Pedido> listDetPedido = pedidoCon.obtenerPedidos();
-                String html = "";
-                for(int i = 0; i < listDetPedido.size(); i++){
-                    Detalle_Pedido detallePedido  = listDetPedido.get(i);
-                    pedido = detallePedido.getPedido();
-                    out.println("<tr>");
-                    out.println("<td>"+ pedido.getId() +"</td>");
-                    out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
-                    out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
-                    out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
-                    out.println("<td></td>");
-                    out.println("<td>" + pedidoCon.totalVenta + "</td>");
-                    out.println("<td><a href='PedidoServlet?accion=AsignarRepartidor&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
-                    out.println("</tr>");
-                }
-            %>
-            <a href=""></a>
-        </table>
-        
-        <h3>Datos de pedido</h3>
-        
-        <div>
-            <form class="">
-                <label>ID Pedido</label>   <input type=""/><br />
-                <label>Tipo Pedido</label> <input type=""/><br />
-                <label>ID Cliente</label>  <input type=""/><br />
-                <label>Repartidor</label> 
-                <select name="cmbRepartidor">
                 <%
+                    Despacho estadoPed = (Despacho)request.getAttribute("estadoPedido");
+                    out.println("<tr>");
+                    out.println("<td>"+ estadoPed.getPedido().getId() +"</td>");
+                    out.println("<td>"+ estadoPed.getPedido().getCliente().getPersona().getNombre() + " " + estadoPed.getPedido().getCliente().getPersona().getApp()   +"</td>");
+                    out.println("<td>"+ estadoPed.getPedido().getTipoPedido().getNombre()+"</td>");
+                    out.println("<td>"+ estadoPed.getComuna()+"</td>");
+                    out.println("<td>"+ estadoPed.getDireccion()+"</td>");
+                    out.println("<td>"+ estadoPed.getNumeracion()+"</td>");
+                    out.println("<td>"+ estadoPed.getRepartidor().getPersona().getNombre() + " " + estadoPed.getRepartidor().getPersona().getApp()+"</td>");
+                    out.println("</tr>");
+                    out.println("</table>");
+            %>
+        
+        
+            <br>
+            <div>
+                <form action="PedidoServlet" method="POST">
+                    <label>Repartidor: </label>
+                    <input type ="hidden" name="idPedido" value="<% out.print(estadoPed.getPedido().getId()); %>"/
+                           >
+                    <select name="cmbRepartidor">
+                    <%
 
-
-                ArrayList<Repartidor> listRepartidor = pedidoCon.seleccionarRepartidor();
-                 for(int i = 0; i < listRepartidor.size(); i++){
-                    out.println("<option value='"+ listRepartidor.get(i).getId() +"'>"+ listRepartidor.get(i).getPersona().getNombre() + "" + listRepartidor.get(i).getPersona().getApp() +"</option>");
-                }
+                    PedidoController pedidoCon = new PedidoController();
+                    ArrayList<Repartidor> listRepartidor = pedidoCon.seleccionarRepartidor();
+                     for(int i = 0; i < listRepartidor.size(); i++){
+                        out.println("<option value='"+ listRepartidor.get(i).getId() +"'>"+ listRepartidor.get(i).getPersona().getNombre() + "" + listRepartidor.get(i).getPersona().getApp() +"</option>");
+                    }
+                    %>
+                    </select><br />
+                    <input type ="hidden" name="accion" value="asignarRepartidor">
+                    <input value="Asignar Repartidor" type="submit"/>
+                </form>
+            </div>
+                    
+            <%} %>
+            <% 
+            if(request.getAttribute("msg") != null)
+            {
                 %>
-                </select><br />
-                <input type="submit"/>
-            </form>
-        </div>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="<% // out.print(pedido.getId()); %>">Asignar repartidor</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <%
+                                        out.print(request.getAttribute("msg"));
+               %>
+               </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script type='text/javascript'>$(window).load(function(){$('#myModal').modal('show');});</script>
+               <%
+               
+            }  
+        %>
         
 </body>
 <jsp:include page="footer.jsp"/>
