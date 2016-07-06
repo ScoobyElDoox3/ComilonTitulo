@@ -84,7 +84,7 @@
                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -129,10 +129,10 @@
                 <td>Cliente</td>
                 <td>Tipo Despacho</td>
                 <td>Id Convenio</td>
-                <td>Nombre Convenio</td>
-                <td>Total</td>
+                <td>Nombre Convenio</td> 
+                
                 <td>Editar</td>
-                <td>Eliminar</td>
+                
             </tr>
             <%
                 String html = "";
@@ -143,14 +143,14 @@
                     out.println("<tr>");
                     out.println("<td>"+ pedido.getId() +"</td>");
                     out.println("<td><a href='PedidoServlet?accion=VerDetalle&IDPedido="+pedido.getId()+"'>Ver detalle</a></td>");
-                    //out.println("<td><button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#"+pedido.getId()+"'>Ver detalle</button></td>");
+                    //out.println("<td><button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#"+pedido.getId()+"'>Ver detalle</button></td>")//Total;
                     out.println("<td>"+ pedido.getCliente().getPersona().getNombre() + pedido.getCliente().getPersona().getApp()+"</td>");
                     out.println("<td>"+ pedido.getTipoPedido().getNombre() +"</td>");
                     out.println("<td>"+ pedido.getCliente().getEmpresa().getConvenio().getId_convenio()+"</td>");
                     out.println("<td>"+ pedido.getCliente().getEmpresa().getConvenio().getNombre_convenio()+"</td>");
-                    out.println("<td>" + pedidoCon.totalVenta + "</td>");
+                    //out.println("<td>" + pedidoCon.totalVenta + "</td>");
                     out.println("<td><a href='PedidoServlet?accion=EditarPedido&IDPedido="+pedido.getId()+"'>Editar</a></td>");
-                    out.println("<td><a href='PedidoServlet?accion=EliminarPedido&IDPedido="+pedido.getId()+"'>Eliminar</a></td>");
+                    
                     out.println("</tr>");
                     
                 }
@@ -182,6 +182,7 @@
                                         out.println("<table class='table'>");
                                         out.println("<tr>");
                                         out.println("<td>Plato</td>");
+                                        out.println("<td>Descripcion</td>");
                                         out.println("<td>Tipo Plato</td>");
                                         out.println("<td>Precio</td>");
                                         
@@ -190,7 +191,8 @@
                                         for(int i = 0; i<array.size(); i++){
                                         //
                                         out.println("<tr>");
-                                        out.println("<td>" + array.get(i).getPlato().getNombre()  + "</td>"); 
+                                        out.println("<td>" + array.get(i).getPlato().getNombre() + "</td>"); 
+                                        out.println("<td>" + array.get(i).getPlato().getDescripcion() + "</td>"); 
                                         out.println("<td>" + array.get(i).getPlato().getTipo_plato()  + "</td>"); 
                                         out.println("<td>" + array.get(i).getPlato().getPrecio()  + "</td>"); 
                                         out.println("</tr>"); 

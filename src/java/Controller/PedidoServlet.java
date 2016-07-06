@@ -43,7 +43,9 @@ public class PedidoServlet extends HttpServlet {
         if(action.equals("getEstadoPedido"))
         {   
             int idPedido = Integer.parseInt(request.getParameter("idPedido"));
+            
             Despacho despacho =  pedcon.getEstadoPedidoByIdPedido(idPedido);
+            
             request.setAttribute("estadoPedido", despacho);
             String from = (String)request.getParameter("from");
             if(from.equals("consultarEstadoPedido")){

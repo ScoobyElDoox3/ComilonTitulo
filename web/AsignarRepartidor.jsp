@@ -66,7 +66,7 @@
         <h3>Datos</h3>
         <form action="PedidoServlet" method="POST">
             <label>Ingrese código de pedido</label>
-            <input name="idPedido" type="number" />
+            <input name="idPedido" type="number" min="1" required/>
             <input type="hidden" name="accion" value="getEstadoPedido" /> 
             <input type="hidden" name="from" value="getAsignarRepartidor"  />    
             <input name="enviar" type="submit"/>
@@ -74,7 +74,8 @@
         
         
             <%
-                if(request.getAttribute("estadoPedido") != null){
+                if(request.getAttribute("estadoPedido") != null)
+                {
                 %>    
         <table class="table-bordered table-striped table">
             <tr>
@@ -120,6 +121,8 @@
                     <input type ="hidden" name="accion" value="asignarRepartidor">
                     <input value="Asignar Repartidor" type="submit"/>
                 </form>
+                    
+                    
             </div>
                     
             <%} %>
@@ -141,7 +144,7 @@
                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -18,6 +18,7 @@ public class Convenio {
     private Date fecha_contrato;
     private Date fecha_caducacion;
     private int saldo_trabajador;
+    
 
     public Convenio(int id_convenio, String nombre_convenio, String descripcion, Date fecha_contrato, Date fecha_caducacion, int saldo_trabajador) {
         this.id_convenio = id_convenio;
@@ -26,6 +27,10 @@ public class Convenio {
         this.fecha_contrato = fecha_contrato;
         this.fecha_caducacion = fecha_caducacion;
         this.saldo_trabajador = saldo_trabajador;
+    }
+
+    public Convenio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId_convenio() {
@@ -74,6 +79,10 @@ public class Convenio {
 
     public void setSaldo_trabajador(int saldo_trabajador) {
         this.saldo_trabajador = saldo_trabajador;
+    }
+
+    public void setPerfil(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

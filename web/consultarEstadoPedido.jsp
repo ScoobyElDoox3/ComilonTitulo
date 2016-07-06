@@ -64,7 +64,7 @@
         <h3>Buscar</h3>
         <form action="PedidoServlet" method="POST">
             <label>Ingrese código de pedido</label>
-            <input name="idPedido" type="number" />
+            <input name="idPedido" type="number" min="1" required/>
             <input type="hidden" name="accion" value="getEstadoPedido" />
             <input type="hidden" name="from" value="consultarEstadoPedido"  />
             <input name="enviar" type="submit"/>
@@ -73,7 +73,7 @@
             if(request.getAttribute("estadoPedido") != null)
             {
                 Despacho estadoPed = (Despacho)request.getAttribute("estadoPedido");
-            
+                if(estadoPed.getId() != 0){
                 //String ad = request.getAttribute("estadoPedido").toString();
                 //PedidoController pedidoCon = new PedidoController();
                 //
@@ -82,7 +82,6 @@
                          
         <h3>Datos de pedido</h3><br>
         <form>
-
             <label>ID Pedido: </label> <% out.println(estadoPed.getPedido().getId()); %><br />
             <label>Tipo Pedido: </label><% out.println(estadoPed.getPedido().getTipoPedido().getNombre()); %><br />
             <label>Fecha Entrega: </label><% out.println(estadoPed.getPedido().getFechaEntrega()); %><br />
@@ -98,7 +97,15 @@
             <!-- input type="submit"/> -->
         </form>
 
-            <%} %>
+            <%}else{
+                %>
+                <label>Codigo ingresado no existe</label>
+                <%
+            }
+
+
+
+} %>
     </div>
     <hr></hr>
 </body>
